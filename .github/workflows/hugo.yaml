@@ -50,6 +50,11 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Install PostCSS CLI, Tailwind CSS, and Autoprefixer
+        run: |
+          npm install -g postcss-cli
+          npm install -D tailwindcss
+          npm install -D autoprefixer
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
@@ -76,3 +81,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
+
